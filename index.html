@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Space</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>MINIMAL</h1>
+  </header>
+
+  <div class="container">
+    <!-- Main Content Area (Images & Videos) -->
+    <main class="main-content">
+      
+      <!-- Section 1: Embedded Image Example -->
+      <article class="media-card">
+        <h2>Featured Photo</h2>
+        <p class="description">Short description or caption for your image goes here.</p>
+        <div class="media-wrapper">
+          <!-- Replace image URL with your own image link or relative path -->
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Sample Minimal Image" />
+        </div>
+      </article>
+
+      <!-- Section 2: Embedded YouTube Video Example -->
+      <article class="media-card">
+        <h2>Featured Video</h2>
+        <p class="description">Short description or caption for your video content.</p>
+        <div class="video-container">
+          <!-- Replace the embed URL (src) with your YouTube/Vimeo embed link -->
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" 
+            title="Video Embed" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </article>
+
+      <!-- Section 3: Native HTML5 Video Example -->
+      <article class="media-card">
+        <h2>Direct Video Upload</h2>
+        <p class="description">Example of a direct video file player.</p>
+        <div class="media-wrapper">
+          <video controls poster="https://via.placeholder.com/800x450/000000/FFFFFF?text=Video+Thumbnail">
+            <source src="your-video-file.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Side Box / Sidebar with External Links -->
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <h3>LINKS</h3>
+        <ul class="link-list">
+          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub Profile</a></li>
+          <li><a href="https://wikipedia.org" target="_blank" rel="noopener">Reference Site</a></li>
+          <li><a href="https://news.ycombinator.com" target="_blank" rel="noopener">Hacker News</a></li>
+          <li><a href="https://unsplash.com" target="_blank" rel="noopener">Photography Feed</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026</p>
+  </footer>
+
+</body>
+</html>
