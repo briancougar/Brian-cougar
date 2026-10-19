@@ -12,13 +12,28 @@ body {
   line-height: 1.6;
   padding: 0 20px;
 }
-
-/* Header */
+/* Header Layout with Avatar Icon */
 .site-header {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 0 20px 0;
+  padding: 30px 0 20px 0;
   border-bottom: 2px solid #111111;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Space between icon and text */
+}
+
+.header-avatar {
+  width: 48px;          /* Small icon size */
+  height: 48px;         /* Keeps it square */
+  border-radius: 50%;   /* Makes it circular */
+  object-fit: cover;    /* Prevents stretching */
+  border: 2px solid #111111;
+  background-color: #000000;
+  display: block;
 }
 
 .site-header h1 {
@@ -26,6 +41,7 @@ body {
   letter-spacing: 4px;
   font-weight: 800;
   text-transform: uppercase;
+  margin: 0;
 }
 
 /* Page Layout Grid */
