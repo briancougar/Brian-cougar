@@ -27,8 +27,8 @@ body {
 }
 
 .header-avatar {
-  width: 48px;          /* Small icon size */
-  height: 48px;         /* Keeps it square */
+  width: 48px;  !important;        /* Small icon size */
+  height: 48px;  !important;       /* Keeps it square */
   border-radius: 50%;   /* Makes it circular */
   object-fit: cover;    /* Prevents stretching */
   border: 2px solid #111111;
