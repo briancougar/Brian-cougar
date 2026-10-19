@@ -13,20 +13,18 @@ body {
   padding: 0 20px;
 }
 
-/* Header with Tiled Background Pattern */
+/* Full-Width Header with Tiled Background Pattern */
 .site-header {
-  background-image: url("IMG_2093.jpeg"); /* Points to your image */
-  background-repeat: repeat;             /* Repeats image horizontally & vertically */
-  background-size: 60px 60px;            /* Controls how big each repeated tile is */
+  background-image: url("IMG_2093.jpeg");
+  background-repeat: repeat;
+  background-size: 60px 60px;
   background-position: top left;
   
-  /* Header layout and spacing */
-  max-width: 1100px;
-  margin: 0 auto;
   width: 100%;
-  padding: 40px 20px;
+  padding: 50px 20px;
   border-bottom: 2px solid #111111;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .header-brand {
@@ -45,10 +43,10 @@ body {
   display: block;
 }
 
-/* Optional overlay styling so title text remains readable over the pattern */
+/* Title box over the tiled header */
 .site-header h1 {
   display: inline-block;
-  background-color: #ffffff;  /* White background box behind the title */
+  background-color: #ffffff;
   color: #111111;
   padding: 8px 20px;
   border: 2px solid #111111;
@@ -62,7 +60,7 @@ body {
 /* Page Layout Grid */
 .container {
   max-width: 1100px;
-  margin: 40px auto;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 280px;
   gap: 40px;
@@ -89,14 +87,15 @@ body {
   margin-bottom: 16px;
 }
 
-/* Image & Local Video Wrapper */
+/* Universal Image Sizing (Fixes giant images on mobile & desktop) */
+.media-card img,
 .media-wrapper img,
-.media-wrapper video {
-  max-width: 250px; 
-  width: 100%;       
-  height: auto;
+.main-content img {
+  max-width: 100% !important;
+  width: 350px !important;
+  height: auto !important;
   display: block;
-  margin: 0 auto;    
+  margin: 0 auto;
   border: 1px solid #111111;
   filter: grayscale(100%);
   transition: filter 0.3s ease;
@@ -118,6 +117,27 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Custom Link Buttons */
+.btn-link {
+  display: inline-block;
+  padding: 14px 24px;
+  background-color: #111111;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #111111;
+  transition: all 0.25s ease;
+}
+
+.btn-link:hover {
+  background-color: #ffffff;
+  color: #111111;
 }
 
 /* Sidebar Box */
