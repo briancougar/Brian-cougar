@@ -57,20 +57,17 @@ body {
   font-size: 0.95rem;
   margin-bottom: 16px;
 }
-
 /* Image & Local Video Wrapper */
 .media-wrapper img,
 .media-wrapper video {
-  width: 100%;
+  max-width: 500px; /* Limits the maximum width of the image */
+  width: 100%;       /* Keeps image responsive on smaller mobile screens */
   height: auto;
   display: block;
+  margin: 0 auto;    /* Centers the image horizontally */
   border: 1px solid #111111;
-  filter: grayscale(100%); /* Optional: Forces black and white image aesthetic */
+  filter: grayscale(100%);
   transition: filter 0.3s ease;
-}
-
-.media-wrapper img:hover {
-  filter: grayscale(0%); /* Restores color on hover */
 }
 
 /* Responsive YouTube/Video iFrame Container */
