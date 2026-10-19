@@ -12,43 +12,37 @@ body {
   line-height: 1.6;
   padding: 0 20px;
 }
-/* Header Layout with Avatar Icon */
+
+/* Header with Tiled Background Pattern */
 .site-header {
+  background-image: url("IMG_2093.jpeg"); /* Points to your image */
+  background-repeat: repeat;             /* Repeats image horizontally & vertically */
+  background-size: 60px 60px;            /* Controls how big each repeated tile is */
+  background-position: top left;
+  
+  /* Header layout and spacing */
   max-width: 1100px;
   margin: 0 auto;
-  padding: 30px 0 20px 0;
+  width: 100%;
+  padding: 40px 20px;
   border-bottom: 2px solid #111111;
+  text-align: center;
 }
 
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 16px; /* Space between icon and text */
+  gap: 16px; 
 }
 
 .header-avatar {
-  width: 48px;  !important;        /* Small icon size */
-  height: 48px;  !important;       /* Keeps it square */
-  border-radius: 50%;   /* Makes it circular */
-  object-fit: cover;    /* Prevents stretching */
+  width: 48px !important;        
+  height: 48px !important;       
+  border-radius: 50%;   
+  object-fit: cover;    
   border: 2px solid #111111;
   background-color: #000000;
   display: block;
-}
-
-.site-header h1 {
-  /* Header with Tiled Background Pattern */
-.site-header {
-  background-image: url("IMG_2093.jpeg"); /* Points to your image */
-  background-repeat: repeat;                          /* Repeats image horizontally & vertically */
-  background-size: 60px 60px;                         /* Controls how big each repeated tile is */
-  background-position: top left;
-  
-  /* Header layout and spacing */
-  width: 100%;
-  padding: 40px 20px;
-  border-bottom: 2px solid #111111;
-  text-align: center;
 }
 
 /* Optional overlay styling so title text remains readable over the pattern */
@@ -94,14 +88,15 @@ body {
   font-size: 0.95rem;
   margin-bottom: 16px;
 }
+
 /* Image & Local Video Wrapper */
 .media-wrapper img,
 .media-wrapper video {
-  max-width: 250px; /* Limits the maximum width of the image */
-  width: 100%;       /* Keeps image responsive on smaller mobile screens */
+  max-width: 250px; 
+  width: 100%;       
   height: auto;
   display: block;
-  margin: 0 auto;    /* Centers the image horizontally */
+  margin: 0 auto;    
   border: 1px solid #111111;
   filter: grayscale(100%);
   transition: filter 0.3s ease;
@@ -191,7 +186,7 @@ body {
   }
 
   .sidebar {
-    order: -1; /* Shows sidebar above media content on mobile */
+    order: -1; 
   }
 
   .sidebar-box {
