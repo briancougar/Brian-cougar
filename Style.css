@@ -37,6 +37,27 @@ body {
 }
 
 .site-header h1 {
+  /* Header with Tiled Background Pattern */
+.site-header {
+  background-image: url("IMG_2093.jpeg"); /* Points to your image */
+  background-repeat: repeat;                          /* Repeats image horizontally & vertically */
+  background-size: 60px 60px;                         /* Controls how big each repeated tile is */
+  background-position: top left;
+  
+  /* Header layout and spacing */
+  width: 100%;
+  padding: 40px 20px;
+  border-bottom: 2px solid #111111;
+  text-align: center;
+}
+
+/* Optional overlay styling so title text remains readable over the pattern */
+.site-header h1 {
+  display: inline-block;
+  background-color: #ffffff;  /* White background box behind the title */
+  color: #111111;
+  padding: 8px 20px;
+  border: 2px solid #111111;
   font-size: 2rem;
   letter-spacing: 4px;
   font-weight: 800;
