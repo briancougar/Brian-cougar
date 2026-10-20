@@ -105,3 +105,18 @@
     margin-top: 0;
     margin-bottom: 12px;
 }
+
+/* Sidebar Header Styling */
+.sidebar-box h3 {
+    color: #cc0000; /* Rich red for the Links header */
+}
+
+/* Individual Link Item Styling */
+.sidebar-box .link-list a {
+    color: #0056b3; /* Clean blue for the actual links */
+    text-decoration: none;
+}
+
+.sidebar-box .link-list a:hover {
+    text-decoration: underline; /* Adds an underline when you hover over them */
+}
