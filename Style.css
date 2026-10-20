@@ -1,12 +1,26 @@
-/* Main Page Layout Grid */
+/* Main Page Layout Grid & Centering */
 .container {
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 0 20px;
     display: grid;
     grid-template-columns: 1fr 280px;
     gap: 40px;
     align-items: start;
+    justify-content: center;
+}
+
+/* Site Header Styling */
+.site-header {
+    text-align: center !important;
+    padding: 20px 0;
+}
+
+.header-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center !important;
 }
 
 /* Main Content Area */
@@ -14,6 +28,13 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
+}
+
+.media-card {
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .media-card h2 {
@@ -52,6 +73,8 @@
     overflow: hidden;
     border: 1px solid #111111;
     background-color: #000000;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .video-container iframe {
@@ -83,7 +106,7 @@
     color: #111111;
 }
 
-/* Sidebar Styling */
+/* Sidebar Styling & Colors */
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -93,6 +116,7 @@
     border: 1px solid #111;
     padding: 20px;
     background-color: #ffffff;
+    text-align: center !important;
 }
 
 .sidebar-box h3 {
@@ -100,59 +124,25 @@
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    border-bottom: 2px solid #111;
+    border-bottom: 2px solid #cc0000;
     padding-bottom: 8px;
     margin-top: 0;
     margin-bottom: 12px;
+    color: #cc0000 !important; /* Rich red header */
 }
 
-/* Sidebar Header Styling */
-.sidebar-box h3 {
-    color: #cc0000; /* Rich red for the Links header */
+.sidebar-box .link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center !important;
 }
 
-/* Individual Link Item Styling */
 .sidebar-box .link-list a {
-    color: #0056b3; /* Clean blue for the actual links */
+    color: #0056b3 !important; /* Clean blue links */
     text-decoration: none;
 }
 
 .sidebar-box .link-list a:hover {
-    text-decoration: underline; /* Adds an underline when you hover over them */
-}
-
-/* Center the site header and brand */
-.site-header {
-    text-align: center;
-}
-
-.header-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    justify-content: center;
-}
-
-/* Center text inside cards and sidebar */
-.media-card, .sidebar-box {
-    text-align: center;
-}
-
-/* Center images and video containers inside cards */
-.media-card img, 
-.media-wrapper img, 
-.video-container {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Forced Centering */
-.site-header { text-align: center !important; }
-.header-brand { justify-content: center !important; }
-.media-card, .sidebar-box { text-align: center !important; }
-.sidebar-box .link-list { text-align: center !important; }
-
-/* Center the link lists */
-.sidebar-box .link-list {
-    text-align: center;
+    text-decoration: underline;
 }
