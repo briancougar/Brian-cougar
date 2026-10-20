@@ -120,3 +120,33 @@
 .sidebar-box .link-list a:hover {
     text-decoration: underline; /* Adds an underline when you hover over them */
 }
+
+/* Center the site header and brand */
+.site-header {
+    text-align: center;
+}
+
+.header-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Center text inside cards and sidebar */
+.media-card, .sidebar-box {
+    text-align: center;
+}
+
+/* Center images and video containers inside cards */
+.media-card img, 
+.media-wrapper img, 
+.video-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Center the link lists */
+.sidebar-box .link-list {
+    text-align: center;
+}
