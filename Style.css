@@ -146,6 +146,12 @@
     margin-right: auto;
 }
 
+/* Forced Centering */
+.site-header { text-align: center !important; }
+.header-brand { justify-content: center !important; }
+.media-card, .sidebar-box { text-align: center !important; }
+.sidebar-box .link-list { text-align: center !important; }
+
 /* Center the link lists */
 .sidebar-box .link-list {
     text-align: center;
