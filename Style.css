@@ -170,3 +170,31 @@
   border: 1px solid #111;
   filter: grayscale(100%); /* Keeps the grayscale theme if you want, or remove this line if your GIF is in color */
 }
+
+/* --- Force Two-Column Layout on Desktop --- */
+@media (min-width: 768px) {
+  .container {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+    gap: 30px !important;
+    align-items: start !important;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .sidebar {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+/* --- Tame the GIF Size --- */
+.sidebar-image-box img {
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: 250px !important; /* Caps the height so it doesn't stretch out of control */
+  object-fit: cover !important;
+  height: auto !important;
+  display: block !important;
+  border: 1px solid #111 !important;
+}
