@@ -1,13 +1,13 @@
 /* Main Page Layout Grid & Centering */
 .container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 40px;
-    align-items: start;
-    justify-content: center;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 280px 1fr; /* Sidebar is 280px on the left, posts take up the remaining space on the right */
+  gap: 40px;
+  align-items: start;
+  justify-content: center;
 }
 
 /* Site Header Styling */
