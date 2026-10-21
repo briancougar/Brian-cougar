@@ -146,3 +146,27 @@
 .sidebar-box .link-list a:hover {
     text-decoration: underline;
 }
+
+/* Sidebar Gap & Stacking */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adds breathing room between your links box and your new image/GIF box */
+}
+
+/* Sidebar Image / GIF Box Styling (Matches your site's brutalist border style) */
+.sidebar-image-box {
+  border: 1px solid #111;
+  background-color: #ffffff;
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar-image-box img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  border: 1px solid #111;
+  filter: grayscale(100%); /* Keeps the grayscale theme if you want, or remove this line if your GIF is in color */
+}
