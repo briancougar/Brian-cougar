@@ -56,7 +56,7 @@
 .media-wrapper img, 
 .main-content img {
     max-width: 100% !important;
-    width: 350px !important;
+    width: 500px !important;
     height: auto !important;
     display: block;
     margin: 0 auto;
