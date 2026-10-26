@@ -22,7 +22,7 @@
             <article class="media-card">
                 <p class="description">Oh wow check out this beach.</p>
                 <div class="media-wrapper">
-                    <img src="IMG_2183.jpeg" alt="Beach photo" />
+                    <img id="random-image" src="IMG_2183.jpeg" alt="Random photo" />
                 </div>
             </article>
 
@@ -128,6 +128,26 @@
         }
         localStorage.setItem('theme', theme);
     });
+</script>
+
+        <script>
+    // List your image file names here
+    const images = [
+        "IMG_2183.jpeg",
+        "IMG_0250.jpeg",
+        "IMG_3647.jpeg",
+        "IMG_6561.jpeg"
+    ];
+
+    // Pick one at random
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const selectedImage = images[randomIndex];
+
+    // Apply it to line 25's image tag automatically
+    const imgElement = document.getElementById('random-image');
+    if (imgElement) {
+        imgElement.src = selectedImage;
+    }
 </script>
 </body>
 </html>
