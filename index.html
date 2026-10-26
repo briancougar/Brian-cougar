@@ -55,7 +55,7 @@
                 </ul>
             </div>
 
-          <!-- Live NY Sports Ticker Box -->
+         <!-- Live NY Sports Ticker Box -->
             <div class="sidebar-box">
                 <h3>NY Sports Live</h3>
                 <div id="ny-sports-ticker" style="font-size: 0.9rem; text-align: left; padding: 5px 0;">
@@ -162,7 +162,6 @@
     async function fetchNYScores() {
         const ticker = document.getElementById('ny-sports-ticker');
         
-        // Endpoints covering all necessary sports leagues (including NBA restored)
         const urls = [
             'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',       // Knicks
             'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',        // Rangers, Islanders, Devils
@@ -171,12 +170,20 @@
             'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard'       // Yankees, Mets
         ];
 
-        // Exact display order requested
-        const orderedTeams = [
-            'Knicks', 'Rangers', 'Jets', 'Giants', 
-            'Gotham FC', 'Islanders', 'Devils', 'Yankees', 'Mets'
-        ];
+        // Exact order with their matching sports emojis
+        const teamInfo = {
+            'Knicks': { icon: '🏀' },
+            'Rangers': { icon: '🏒' },
+            'Jets': { icon: '🏈' },
+            'Giants': { icon: '🏈' },
+            'Gotham FC': { icon: '⚽' },
+            'Islanders': { icon: '🏒' },
+            'Devils': { icon: '🏒' },
+            'Yankees': { icon: '⚾' },
+            'Mets': { icon: '⚾' }
+        };
 
+        const orderedTeams = Object.keys(teamInfo);
         let gamesMap = {};
 
         try {
@@ -194,10 +201,11 @@
                                 const comp = event.competitions[0];
                                 const home = comp.competitors.find(c => c.homeAway === 'home');
                                 const away = comp.competitors.find(c => c.homeAway === 'away');
+                                const icon = teamInfo[team].icon;
                                 
                                 gamesMap[team] = `
                                     <li style="border-bottom: 1px solid #eee; padding: 8px 0;">
-                                        <div style="font-weight: bold; margin-bottom: 2px; color: #111;">${team}</div>
+                                        <div style="font-weight: bold; margin-bottom: 2px; color: #111;">${icon} ${team}</div>
                                         <div style="color: #555; font-size: 0.85rem;">
                                             ${away.team.abbreviation} ${away.score || '0'} - ${home.team.abbreviation} ${home.score || '0'}
                                         </div>
@@ -210,17 +218,16 @@
                 }
             });
 
-            // Build list strictly in your requested sequence
             let htmlContent = '<ul style="list-style: none; padding: 0; margin: 0;">';
 
             orderedTeams.forEach(team => {
+                const icon = teamInfo[team].icon;
                 if (gamesMap[team]) {
                     htmlContent += gamesMap[team];
                 } else {
-                    // Fallback line if they aren't playing today/recently
                     htmlContent += `
                         <li style="border-bottom: 1px solid #eee; padding: 6px 0; color: #888; font-size: 0.85rem;">
-                            <span style="font-weight: 600; color: #333;">${team}</span>: No game today
+                            <span style="font-weight: 600; color: #333;">${icon} ${team}</span>: No game today
                         </li>
                     `;
                 }
