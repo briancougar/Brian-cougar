@@ -277,3 +277,20 @@ body.dark-mode .sidebar-box .link-list li {
 body.dark-mode .sidebar-box .link-list a {
     color: #66b0ff !important;
 }
+
+/* --- NY Sports Ticker Dark Mode Support --- */
+body.dark-mode #ny-sports-ticker div {
+    color: #e0e0e0 !important;
+}
+body.dark-mode #ny-sports-ticker li {
+    border-bottom: 1px solid #333 !important;
+}
+body.dark-mode #ny-sports-ticker .team-name {
+    color: #ffffff !important;
+}
+body.dark-mode #ny-sports-ticker .game-score {
+    color: #cccccc !important;
+}
+body.dark-mode #ny-sports-ticker .game-status {
+    color: #999999 !important;
+}
