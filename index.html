@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    /* 1. Create a centered main container with a max-width */
+.container {
+  max-width: 700px;        /* Adjust this width depending on how wide you want your page */
+  margin: 0 auto;          /* Automatically centers the container horizontally */
+  padding: 0 20px;         /* Adds a little breathing room on mobile viewports */
+}
+
+/* 2. Center all text, images, and inline elements inside the container */
+.container, 
+body {
+  text-align: center;
+}
+
+/* 3. Ensure images and iframes (like your YouTube video) don't overflow and stay centered */
+.container img,
+.container iframe {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
    <header class="site-header" style="position: relative; height: 180px; overflow: hidden; background: #fff; border-bottom: 1px solid #111;">
   <div id="bouncing-logo" style="position: absolute; left: 0; top: 0; will-change: transform;">
     <img src="COUG TITLE.png" alt="Brian Cougar Logo" style="width: 250px; height: auto; display: block;" />
