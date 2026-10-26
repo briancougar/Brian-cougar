@@ -158,7 +158,7 @@
     }
 </script>
 
-      <script>
+    <script>
     async function fetchNYScores() {
         const ticker = document.getElementById('ny-sports-ticker');
         
@@ -170,7 +170,6 @@
             'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard'       // Yankees, Mets
         ];
 
-        // Exact order with their matching sports emojis
         const teamInfo = {
             'Knicks': { icon: '🏀' },
             'Rangers': { icon: '🏒' },
@@ -204,12 +203,12 @@
                                 const icon = teamInfo[team].icon;
                                 
                                 gamesMap[team] = `
-                                    <li style="border-bottom: 1px solid #eee; padding: 8px 0;">
-                                        <div style="font-weight: bold; margin-bottom: 2px; color: #111;">${icon} ${team}</div>
-                                        <div style="color: #555; font-size: 0.85rem;">
+                                    <li style="border-bottom: 1px solid #eee; padding: 8px 0; text-align: left;">
+                                        <div class="team-name" style="font-weight: bold; margin-bottom: 2px; color: #111;">${icon} ${team}</div>
+                                        <div class="game-score" style="color: #555; font-size: 0.85rem;">
                                             ${away.team.abbreviation} ${away.score || '0'} - ${home.team.abbreviation} ${home.score || '0'}
                                         </div>
-                                        <div style="color: #777; font-size: 0.75rem; text-transform: uppercase;">${status}</div>
+                                        <div class="game-status" style="color: #777; font-size: 0.75rem; text-transform: uppercase;">${status}</div>
                                     </li>
                                 `;
                             }
@@ -226,8 +225,8 @@
                     htmlContent += gamesMap[team];
                 } else {
                     htmlContent += `
-                        <li style="border-bottom: 1px solid #eee; padding: 6px 0; color: #888; font-size: 0.85rem;">
-                            <span style="font-weight: 600; color: #333;">${icon} ${team}</span>: No game today
+                        <li style="border-bottom: 1px solid #eee; padding: 6px 0; color: #888; font-size: 0.85rem; text-align: left;">
+                            <span class="team-name" style="font-weight: 600; color: #333;">${icon} ${team}</span>: <span class="game-status">No game today</span>
                         </li>
                     `;
                 }
