@@ -89,7 +89,6 @@
     display: block;
     margin: 0 auto;
     border: 1px solid #111111;
-    filter: grayscale(100%);
     transition: filter 0.3s ease;
 }
 
