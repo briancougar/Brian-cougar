@@ -3,11 +3,9 @@
     max-width: 1100px;
     margin: 40px auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 30px;
-    align-items: start;
-    justify-content: center;
 }
 
 /* --- Site Header Styling --- */
@@ -79,7 +77,7 @@
     margin-bottom: 15px;
 }
 
-/* --- Universal Image Sizing --- */
+/* --- Universal Image Sizing (Full Color Restored) --- */
 .media-card img, 
 .media-wrapper img, 
 .main-content img {
@@ -226,7 +224,7 @@
     color: #555;
 }
 
-/* --- Desktop Layout Adjustments --- */
+/* --- Desktop Layout Adjustments (Side-by-Side Grid) --- */
 @media (min-width: 768px) {
     .container {
         display: grid !important;
