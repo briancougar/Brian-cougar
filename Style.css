@@ -1,19 +1,37 @@
-/* Main Page Layout Grid & Centering */
+/* --- Main Page Layout Grid & Centering --- */
 .container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: 280px 1fr; /* Sidebar is 280px on the left, posts take up the remaining space on the right */
-  gap: 40px;
-  align-items: start;
-  justify-content: center;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+    justify-content: center;
 }
 
-/* Site Header Styling */
+/* --- Site Header Styling --- */
 .site-header {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #111;
     text-align: center !important;
     padding: 20px 0;
+}
+
+#bouncing-logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+}
+
+#bouncing-logo img {
+    width: 250px;
+    height: auto;
+    display: block;
 }
 
 .header-brand {
@@ -23,14 +41,18 @@
     justify-content: center !important;
 }
 
-/* Main Content Area */
+/* --- Main Content Area --- */
 .main-content {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
 }
 
 .media-card {
+    border: 1px solid #111;
+    padding: 20px;
+    margin-bottom: 30px;
+    background: #fff;
     text-align: center !important;
     margin-left: auto;
     margin-right: auto;
@@ -38,25 +60,31 @@
 }
 
 .media-card h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.media-card h2 a {
+    text-decoration: none;
+    color: #111;
 }
 
 .media-card .description {
     color: #555555;
     font-size: 0.95rem;
-    margin-bottom: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
 }
 
-/* Universal Image Sizing */
+/* --- Universal Image Sizing --- */
 .media-card img, 
 .media-wrapper img, 
 .main-content img {
-    max-width: 100% !important;
-    width: 500px !important;
+    max-width: 500px !important;
+    width: 100% !important;
     height: auto !important;
     display: block;
     margin: 0 auto;
@@ -65,7 +93,7 @@
     transition: filter 0.3s ease;
 }
 
-/* Responsive YouTube/Video iFrame Container */
+/* --- Responsive YouTube/Video iFrame Container --- */
 .video-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 ratio */
@@ -85,31 +113,32 @@
     height: 100%;
 }
 
-/* Custom Link Buttons */
+/* --- Custom Link Buttons --- */
 .btn-link {
     display: inline-block;
-    padding: 14px 24px;
+    padding: 8px 16px;
     background-color: #111111;
     color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
     border: 2px solid #111111;
     transition: all 0.25s ease;
-} 
+}
 
 .btn-link:hover {
     background-color: #ffffff;
     color: #111111;
 }
 
-/* Sidebar Styling & Colors */
+/* --- Sidebar Styling & Colors --- */
 .sidebar {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .sidebar-box {
@@ -117,6 +146,7 @@
     padding: 20px;
     background-color: #ffffff;
     text-align: center !important;
+    margin-bottom: 20px;
 }
 
 .sidebar-box h3 {
@@ -128,7 +158,7 @@
     padding-bottom: 8px;
     margin-top: 0;
     margin-bottom: 12px;
-    color: #cc0000 !important; /* Rich red header */
+    color: #cc0000 !important;
 }
 
 .sidebar-box .link-list {
@@ -138,63 +168,75 @@
     text-align: center !important;
 }
 
+.sidebar-box .link-list li {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.sidebar-box .link-list li:last-child {
+    border-bottom: none;
+}
+
 .sidebar-box .link-list a {
-    color: #0056b3 !important; /* Clean blue links */
+    color: #0056b3 !important;
     text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 .sidebar-box .link-list a:hover {
     text-decoration: underline;
 }
 
-/* Sidebar Gap & Stacking */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Adds breathing room between your links box and your new image/GIF box */
-}
-
-/* Sidebar Image / GIF Box Styling (Matches your site's brutalist border style) */
+/* --- Sidebar Image / GIF Box Styling --- */
 .sidebar-image-box {
-  border: 1px solid #111;
-  background-color: #ffffff;
-  padding: 10px;
-  text-align: center;
+    border: 1px solid #111;
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
 }
 
 .sidebar-image-box img {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  display: block;
-  border: 1px solid #111;
-  filter: grayscale(100%); /* Keeps the grayscale theme if you want, or remove this line if your GIF is in color */
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 250px !important;
+    object-fit: cover !important;
+    height: auto !important;
+    display: block !important;
+    border: 1px solid #111 !important;
 }
 
-/* --- Force Two-Column Layout on Desktop --- */
-@media (min-width: 768px) {
-  .container {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr !important;
-    gap: 30px !important;
-    align-items: start !important;
+.sidebar-image-box .description {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+/* --- Footer --- */
+.site-footer {
     max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  .sidebar {
-    position: sticky;
-    top: 20px;
-  }
+    margin: 40px auto;
+    padding: 20px;
+    border-top: 1px solid #111;
+    grid-column: 1 / -1;
 }
 
-/* --- Tame the GIF Size --- */
-.sidebar-image-box img {
-  width: 100% !important;
-  max-width: 100% !important;
-  max-height: 250px !important; /* Caps the height so it doesn't stretch out of control */
-  object-fit: cover !important;
-  height: auto !important;
-  display: block !important;
-  border: 1px solid #111 !important;
+.site-footer p {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* --- Desktop Layout Adjustments --- */
+@media (min-width: 768px) {
+    .container {
+        display: grid !important;
+        grid-template-columns: 2fr 1fr !important;
+        gap: 30px !important;
+        align-items: start !important;
+    } 
+    .sidebar {
+        position: sticky;
+        top: 20px;
+    }
 }
