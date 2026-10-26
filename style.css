@@ -137,7 +137,7 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 .sidebar-box {
@@ -145,7 +145,7 @@
     padding: 20px;
     background-color: #ffffff;
     text-align: center !important;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .sidebar-box h3 {
