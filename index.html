@@ -55,6 +55,14 @@
                 </ul>
             </div>
 
+            <!-- Live NY Sports Ticker Box -->
+            <div class="sidebar-box">
+                <h3>NY Sports Live</h3>
+                <div id="ny-sports-ticker" style="font-size: 0.9rem; text-align: left; padding: 5px 0;">
+                    <p style="text-align: center; color: #777;">Loading scores...</p>
+                </div>
+            </div>
+
             <!-- Right Side Fill Image or GIF -->
             <div class="sidebar-image-box">
                 <img src="https://platform.pinstripealley.com/wp-content/uploads/sites/124/chorus/uploads/chorus_asset/file/4014590/gunslinger-a-rod.0.gif?quality=90&strip=all&crop=0,0,100,100" alt="Side decoration" />
@@ -148,6 +156,87 @@
     if (imgElement) {
         imgElement.src = selectedImage;
     }
+</script>
+
+        <script>
+    async function fetchNYScores() {
+        const ticker = document.getElementById('ny-sports-ticker');
+        
+        // Endpoints covering all necessary sports leagues
+        const urls = [
+            'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',       // Knicks
+            'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',        // Rangers, Islanders, Devils
+            'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard',      // Jets, Giants
+            'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard',      // Gotham FC (NWSL)
+            'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard'       // Yankees, Mets
+        ];
+
+        // Exact display order requested
+        const orderedTeams = [
+            'Knicks', 'Rangers', 'Jets', 'Giants', 
+            'Gotham FC', 'Islanders', 'Devils', 'Yankees', 'Mets'
+        ];
+
+        let gamesMap = {};
+
+        try {
+            const responses = await Promise.all(urls.map(url => fetch(url).catch(() => null)));
+            const dataSets = await Promise.all(responses.map(res => res ? res.json() : null));
+
+            dataSets.forEach(data => {
+                if (data && data.events) {
+                    data.events.forEach(event => {
+                        const gameName = event.name;
+                        
+                        orderedTeams.forEach(team => {
+                            if (gameName.includes(team) && !gamesMap[team]) {
+                                const status = event.status.type.detail;
+                                const comp = event.competitions[0];
+                                const home = comp.competitors.find(c => c.homeAway === 'home');
+                                const away = comp.competitors.find(c => c.homeAway === 'away');
+                                
+                                gamesMap[team] = `
+                                    <li style="border-bottom: 1px solid #eee; padding: 8px 0;">
+                                        <div style="font-weight: bold; margin-bottom: 2px; color: #111;">${team}</div>
+                                        <div style="color: #555; font-size: 0.85rem;">
+                                            ${away.team.abbreviation} ${away.score || '0'} - ${home.team.abbreviation} ${home.score || '0'}
+                                        </div>
+                                        <div style="color: #777; font-size: 0.75rem; text-transform: uppercase;">${status}</div>
+                                    </li>
+                                `;
+                            }
+                        });
+                    });
+                }
+            });
+
+            // Build list strictly in your requested sequence
+            let htmlContent = '<ul style="list-style: none; padding: 0; margin: 0;">';
+            let foundAny = false;
+
+            orderedTeams.forEach(team => {
+                if (gamesMap[team]) {
+                    htmlContent += gamesMap[team];
+                    foundAny = true;
+                } else {
+                    // Fallback line if they aren't playing today
+                    htmlContent += `
+                        <li style="border-bottom: 1px solid #eee; padding: 6px 0; color: #888; font-size: 0.85rem;">
+                            <span style="font-weight: 600; color: #333;">${team}</span>: No game today
+                        </li>
+                    `;
+                }
+            });
+
+            htmlContent += '</ul>';
+            ticker.innerHTML = htmlContent;
+
+        } catch (error) {
+            ticker.innerHTML = '<p style="text-align: center; color: #777; font-size: 0.85rem; margin: 0;">Scoreboard temporarily offline</p>';
+        }
+    }
+
+    fetchNYScores();
 </script>
 </body>
 </html>
