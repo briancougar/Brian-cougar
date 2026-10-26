@@ -240,3 +240,40 @@
         top: 20px;
     }
 }
+
+/* --- Dark Mode Theme Styles --- */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .media-card, 
+body.dark-mode .sidebar-box, 
+body.dark-mode .sidebar-image-box {
+    background-color: #1a1a1a !important;
+    border-color: #333333 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .media-card h2 a {
+    color: #ffffff !important;
+}
+
+body.dark-mode .media-card .description, 
+body.dark-mode .sidebar-image-box .description {
+    color: #aaaaaa !important;
+}
+
+body.dark-mode .site-header, 
+body.dark-mode .site-footer {
+    background-color: #121212 !important;
+    border-color: #333333 !important;
+}
+
+body.dark-mode .sidebar-box .link-list li {
+    border-bottom-color: #333333 !important;
+}
+
+body.dark-mode .sidebar-box .link-list a {
+    color: #66b0ff !important;
+}
