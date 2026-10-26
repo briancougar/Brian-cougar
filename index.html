@@ -158,44 +158,40 @@
     }
 </script>
 
-    <script>
+   <script>
     async function fetchNYScores() {
         const ticker = document.getElementById('ny-sports-ticker');
         
-        const urls = [
+        const scoreUrls = [
             'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',       // Knicks
             'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',        // Rangers, Islanders, Devils
             'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard',      // Jets, Giants
-            'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard',      // Gotham FC (NWSL)
-            'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard'       // Yankees, Mets
+            'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard'       // Gotham FC (NWSL)
         ];
 
+        // Team ID mapping for fetching future schedules when off today
         const teamInfo = {
-            'Knicks': { icon: '🏀' },
-            'Rangers': { icon: '🏒' },
-            'Jets': { icon: '🏈' },
-            'Giants': { icon: '🏈' },
-            'Gotham FC': { icon: '⚽' },
-            'Islanders': { icon: '🏒' },
-            'Devils': { icon: '🏒' },
-            /*
-            'Yankees': { icon: '⚾' },
-            'Mets': { icon: '⚾' }
-            */
+            'Knicks': { icon: '🏀', sport: 'basketball/nba', id: '18' },
+            'Rangers': { icon: '🏒', sport: 'hockey/nhl', id: '3' },
+            'Jets': { icon: '🏈', sport: 'football/nfl', id: '20' },
+            'Giants': { icon: '🏈', sport: 'football/nfl', id: '19' },
+            'Gotham FC': { icon: '⚽', sport: 'soccer/usa.1', id: '19875' },
+            'Islanders': { icon: '🏒', sport: 'hockey/nhl', id: '15' },
+            'Devils': { icon: '🏒', sport: 'hockey/nhl', id: '1' }
         };
 
         const orderedTeams = Object.keys(teamInfo);
         let gamesMap = {};
 
         try {
-            const responses = await Promise.all(urls.map(url => fetch(url).catch(() => null)));
+            // 1. Fetch today's scores first
+            const responses = await Promise.all(scoreUrls.map(url => fetch(url).catch(() => null)));
             const dataSets = await Promise.all(responses.map(res => res ? res.json() : null));
 
             dataSets.forEach(data => {
                 if (data && data.events) {
                     data.events.forEach(event => {
                         const gameName = event.name;
-                        
                         orderedTeams.forEach(team => {
                             if (gameName.includes(team) && !gamesMap[team]) {
                                 const status = event.status.type.detail;
@@ -219,16 +215,53 @@
                 }
             });
 
-            let htmlContent = '<ul style="list-style: none; padding: 0; margin: 0;">';
+            // 2. For teams missing from today's scoreboard, fetch their upcoming schedule
+            const missingTeams = orderedTeams.filter(team => !gamesMap[team]);
+            
+            await Promise.all(missingTeams.map(async team => {
+                try {
+                    const info = teamInfo[team];
+                    const schedRes = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${info.sport}/teams/${info.id}/schedule`);
+                    const schedData = await schedRes.json();
+                    
+                    if (schedData && schedData.events) {
+                        // Find the first event that hasn't happened yet (or is live)
+                        const now = new Date();
+                        const nextGame = schedData.events.find(ev => new Date(ev.date) > now);
+                        
+                        if (nextGame) {
+                            const comp = nextGame.competitions[0];
+                            const gameDate = new Date(nextGame.date);
+                            const dateStr = gameDate.toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                            const opponent = comp.competitors.find(c => c.id !== info.id)?.team.shortDisplayName || "Opponent";
+                            const isHome = comp.competitors.find(c => c.id === info.id)?.homeAway === 'home';
+                            const vsOrAt = isHome ? 'vs' : 'at';
+                            
+                            gamesMap[team] = `
+                                <li style="border-bottom: 1px solid #eee; padding: 8px 0; text-align: left;">
+                                    <div class="team-name" style="font-weight: bold; margin-bottom: 2px; color: #111;">${info.icon} ${team}</div>
+                                    <div class="game-score" style="color: #555; font-size: 0.85rem;">
+                                        Next: ${vsOrAt} ${opponent}
+                                    </div>
+                                    <div class="game-status" style="color: #777; font-size: 0.75rem; text-transform: uppercase;">${dateStr}</div>
+                                </li>
+                            `;
+                        }
+                    }
+                } catch (e) {
+                    // Fail gracefully for individual team schedule fetches if network blips
+                }
+            }));
 
+            // 3. Render final list in precise requested order
+            let htmlContent = '<ul style="list-style: none; padding: 0; margin: 0;">';
             orderedTeams.forEach(team => {
-                const icon = teamInfo[team].icon;
                 if (gamesMap[team]) {
                     htmlContent += gamesMap[team];
                 } else {
                     htmlContent += `
                         <li style="border-bottom: 1px solid #eee; padding: 6px 0; color: #888; font-size: 0.85rem; text-align: left;">
-                            <span class="team-name" style="font-weight: 600; color: #333;">${icon} ${team}</span>: <span class="game-status">No game today</span>
+                            <span class="team-name" style="font-weight: 600; color: #333;">${team}</span>: <span class="game-status">No upcoming game</span>
                         </li>
                     `;
                 }
