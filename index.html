@@ -256,12 +256,13 @@
             // 3. Render final list in precise requested order
             let htmlContent = '<ul style="list-style: none; padding: 0; margin: 0;">';
             orderedTeams.forEach(team => {
+                const icon = teamInfo[team].icon; // Grab the icon here
                 if (gamesMap[team]) {
                     htmlContent += gamesMap[team];
                 } else {
                     htmlContent += `
                         <li style="border-bottom: 1px solid #eee; padding: 6px 0; color: #888; font-size: 0.85rem; text-align: left;">
-                            <span class="team-name" style="font-weight: 600; color: #333;">${team}</span>: <span class="game-status">TBD</span>
+                            <span class="team-name" style="font-weight: 600; color: #333;">${icon} ${team}</span>: <span class="game-status">TBD</span>
                         </li>
                     `;
                 }
